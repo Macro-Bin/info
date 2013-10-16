@@ -42,7 +42,7 @@
                                     {%for reply in item.replys %}
                                             <li>
                                                 {{reply.content}}<br>
-                                                {{reply.createTime|date("Y-n-d H:i") }}&nbsp<a href="#">@{{reply.username}}</a>
+                                                {{reply.createTime|date("Y-n-d H:i",480,"CCT") }}&nbsp<a href="#">@{{reply.username}}</a>
                                             </li>
                                     {% endfor %}
                                 </ol>
