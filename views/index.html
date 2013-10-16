@@ -104,19 +104,35 @@
               success: function(data)
               {
                   if(data["isSuccess"]){
-                      $("ul.list-group li:eq(0)").before(
-                          '<li class="list-group-item">' +
-                          '<span class="reply pull-right">' +
-                          '<button type="button" class="btn btn-info">reply</button>' +
-                          '</span>' +
-                          '<ul class="comment-group list-unstyled">' +
-                          '<input type="hidden" value="'+data["cid"]+'"/>'+
-                          '<li>'+data["content"] +'</li>' +
-                          '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
-                          '<li><ol class="reply-group"></ol></li>' +
-                          '</ul>' +
-                          '</li>'
-                      );
+                      if($("ul.list-group li:eq(0)").length <=0){
+                          $("ul.list-group").append('<li class="list-group-item">' +
+                                  '<span class="reply pull-right">' +
+                                  '<button type="button" class="btn btn-info">reply</button>' +
+                                  '</span>' +
+                                  '<ul class="comment-group list-unstyled">' +
+                                  '<input type="hidden" value="'+data["cid"]+'"/>'+
+                                  '<li>'+data["content"] +'</li>' +
+                                  '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
+                                  '<li><ol class="reply-group"></ol></li>' +
+                                  '</ul>' +
+                                  '</li>'
+                          );
+                      }else{
+                          $("ul.list-group li:eq(0)").before(
+                                  '<li class="list-group-item">' +
+                                          '<span class="reply pull-right">' +
+                                          '<button type="button" class="btn btn-info">reply</button>' +
+                                          '</span>' +
+                                          '<ul class="comment-group list-unstyled">' +
+                                          '<input type="hidden" value="'+data["cid"]+'"/>'+
+                                          '<li>'+data["content"] +'</li>' +
+                                          '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
+                                          '<li><ol class="reply-group"></ol></li>' +
+                                          '</ul>' +
+                                          '</li>'
+                          );
+                      }
+
                       $("#name").val("");
                       $("#comment").val("");
                       bootbox.dialog({
@@ -151,7 +167,7 @@
           $current_ul = $(this).parent().parent("li").children("ul");
           if($current_ul.children().has("form").length <= 0){
               $current_ul.append(
-                      '<div class="row col-md-12">'+
+                      '<div class="row col-md-12 replyDiv">'+
                       '<form class="form-inline" role="form">'+
                       '<div class="form-group col-md-2">'+
                       '<input type="text" class="form-control r_name" id="r_name" placeholder="请填写姓名或者邮箱...">'+
@@ -201,6 +217,7 @@
                       }
                       $current_ul.find(".r_comment").val("");
                       $current_ul.find(".r_name").val("");
+                      $current_ul.find(".replyDiv").remove();
                       bootbox.dialog({
                           message: '回复成功。',
                           title: "提示",
