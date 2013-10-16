@@ -6,6 +6,7 @@
       <script src="/javascripts/jquery-1.9.1.js"></script>
       <script src="/javascripts/bootstrap.js"></script>
       <script src="/javascripts/bootbox.min.js"></script>
+      <script src="/javascripts/jquery.paginate.js"></script>
   </head>
   <body>
     <div class="row">
@@ -33,34 +34,48 @@
                         <button type="button" class="btn btn-info">reply</button>
                     </span>
                     <ul class="comment-group list-unstyled">
-                        <input type="hidden" value="{{item.comment.id}}"/>
-                        <p>
+                            <input type="hidden" value="{{item.comment.id}}"/>
                             <li>{{item.comment.content}}</li>
                             <li>{{item.comment.createTime|date("Y-n-d H:i") }}&nbsp<a href="#">@{{item.comment.username}}</a></li>
-                        <p>
-                        {% if item.replys.length %}
-                        <li>
-                            <ol class="reply-group">
-                                {%for reply in item.replys %}
-                                <p>
-                                    <li>{{reply.content}}</li>
-                                    {{reply.createTime|date("Y-n-d H:i") }}&nbsp<a href="#">@{{reply.username}}</a>
-                                </p>
-                                {% endfor %}
-                            </ol>
-                        </li>
-                        {% endif %}
-
+                            <li>
+                                <ol class="reply-group">
+                                    {%for reply in item.replys %}
+                                            <li>
+                                                {{reply.content}}<br>
+                                                {{reply.createTime|date("Y-n-d H:i") }}&nbsp<a href="#">@{{reply.username}}</a>
+                                            </li>
+                                    {% endfor %}
+                                </ol>
+                            </li>
                      </ul>
                 </li>
                 {% endfor %}
             </ul>
         </div>
     </p>
+    <div class="demo">
+        <h1>Demo 2</h1>
+        <div id="demo2">
+        </div>
+    </div>
   </body>
   <script type="text/javascript">
-      function checkNull (id_selector){
-          if($(id_selector).val() == ""){
+
+
+      $(function(){
+          $("#demo2").paginate({
+              count 		: 50,
+              start 		: 5,
+              display     : 10,
+              border					: false,
+              text_color  			: '#888',
+              background_color    	: '#EEE',
+              text_hover_color  		: 'black',
+              background_hover_color	: '#CFCFCF'
+          });
+      });
+
+      function nullDialog (){
               bootbox.dialog({
                   message: '写点东西吧，内容不能为空哦。',
                   title: "提示",
@@ -73,11 +88,10 @@
                   }
               });
               return false;
-          }
-          return true;
       };
       $( ".btn.btn-primary" ).click(function( ) {
-          if(!checkNull("#comment")){
+          if($("#comment").val()==""){
+              nullDialog();
               return false;
           }
           $.ajax({
@@ -89,18 +103,20 @@
               }, // serializes the form's elements.
               success: function(data)
               {
-                  $("ul.list-group li:eq(0)").before(
-                      '<li class="list-group-item">' +
-                      '<span class="reply pull-right">' +
-                      '<button type="button" class="btn btn-info">reply</button>' +
-                      '</span>' +
-                      '<ul class="list-unstyled">' +
-                      '<li>'+data["content"] +'</li>' +
-                      '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
-                      '</ul>' +
-                      '</li>'
-                  );
                   if(data["isSuccess"]){
+                      $("ul.list-group li:eq(0)").before(
+                          '<li class="list-group-item">' +
+                          '<span class="reply pull-right">' +
+                          '<button type="button" class="btn btn-info">reply</button>' +
+                          '</span>' +
+                          '<ul class="comment-group list-unstyled">' +
+                          '<input type="hidden" value="'+data["cid"]+'"/>'+
+                          '<li>'+data["content"] +'</li>' +
+                          '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
+                          '<li><ol class="reply-group"></ol></li>' +
+                          '</ul>' +
+                          '</li>'
+                      );
                       $("#name").val("");
                       $("#comment").val("");
                       bootbox.dialog({
@@ -134,19 +150,19 @@
       $(".list-group").on("click", '.btn.btn-info', function(){
           $current_ul = $(this).parent().parent("li").children("ul");
           if($current_ul.children().has("form").length <= 0){
-              $current_ul.append('<li>'+
+              $current_ul.append(
                       '<div class="row col-md-12">'+
                       '<form class="form-inline" role="form">'+
                       '<div class="form-group col-md-2">'+
-                      '<input type="text" class="form-control" id="r_name" placeholder="请填写姓名或者邮箱...">'+
+                      '<input type="text" class="form-control r_name" id="r_name" placeholder="请填写姓名或者邮箱...">'+
                       '</div>'+
                       '<div class="form-group col-md-9 ">'+
-                      '<input type="text" class="form-control" id="r_comment" placeholder="请输入回复内容...">'+
+                      '<input type="text" class="form-control r_comment" id="r_comment" placeholder="请输入回复内容...">'+
                       '</div>'+
                       '<button type="submit" class="btn btn-default">reply</button>'+
                       '</form>'+
-                      '</div>'+
-                      '</li>');
+                      '</div>'
+                      );
           };
           return false;
       });
@@ -155,23 +171,36 @@
       $(".list-group").on("click", '.btn.btn-default', function(){
           $current_ul = $(this).closest("ul");
           var cid = $current_ul.children("input[type='hidden']").val();
-          alert($current_ul.children().html());
-          if(!checkNull("#r_comment")){
+          var reply =$current_ul.find(".r_comment").val();
+          var r_username =$current_ul.find(".r_name").val();
+          if(reply==""){
+              nullDialog();
               return false;
           }
           $.ajax({
               type: "POST",
-              url: '/reply/createss',
+              url: '/reply/create',
               data: {
-                  "name" :$("#r_name").val(),
-                  "comment":$("#r_comment").val(),
+                  "name" : r_username,
+                  "comment" : reply ,
                   "cid" : cid
               },
               success: function(data)
               {
                   if(data["isSuccess"]){
-                      $("#r_name").val("");
-                      $("#r_comment").val("");
+                      if($current_ul.find(".reply-group li:last").length <=0){
+                          $current_ul.find(".reply-group").append('<li>' +
+                                  data["content"] +"<br>" +
+                                  data["createTime"] + "&nbsp" +
+                                  '<a href="#">@'+data["username"]+'</a></li>');
+                      }else{
+                          $current_ul.find(".reply-group li:last").after('<li>' +
+                                  data["content"] +"<br>" +
+                                  data["createTime"] + "&nbsp" +
+                                  '<a href="#">@'+data["username"]+'</a></li>');
+                      }
+                      $current_ul.find(".r_comment").val("");
+                      $current_ul.find(".r_name").val("");
                       bootbox.dialog({
                           message: '回复成功。',
                           title: "提示",

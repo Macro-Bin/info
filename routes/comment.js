@@ -12,6 +12,9 @@ exports.create = function(req, res){
     var Comment = req.models.comment;
     var name = req.body.name;
     var comment = req.body.comment;
+    if(comment == ""){
+        res.json({isSuccess:false});
+    }
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
     if(name == ""){
         name="佚名";
@@ -20,15 +23,16 @@ exports.create = function(req, res){
         content : comment,
         username : name,
         createTime : now
-    },function(err,items){
+    },function(err,item){
         if(err){
             res.json({isSuccess:false});
         }
         res.json({
-            isSuccess:false,
+            isSuccess : true,
             content : comment,
             username : name,
-            createTime : now
+            createTime : now,
+            cid : item.id
         });
     });
 
