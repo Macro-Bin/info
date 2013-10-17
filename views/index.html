@@ -6,7 +6,8 @@
       <script src="/javascripts/jquery-1.9.1.js"></script>
       <script src="/javascripts/bootstrap.js"></script>
       <script src="/javascripts/bootbox.min.js"></script>
-      <script src="/javascripts/jquery.paginate.js"></script>
+      <script src="/javascripts/bootstrap-paginator.min.js"></script>
+
   </head>
   <body>
     <div class="row">
@@ -52,28 +53,22 @@
                 {% endfor %}
             </ul>
         </div>
-    </p>
-    <div class="demo">
-        <h1>Demo 2</h1>
-        <div id="demo2">
+        <div class="row col-md-8 col-md-offset-6 text-left">
+            <ul id="commentPaginator"></ul>
         </div>
-    </div>
+    </p>
   </body>
   <script type="text/javascript">
+  $(function(){
+      var options = {
+          size:"small",
+          bootstrapMajorVersion:3,
+          currentPage: 1,
+          numberOfPages: 10,
+          totalPages:110
+      };
 
-
-      $(function(){
-          $("#demo2").paginate({
-              count 		: 50,
-              start 		: 5,
-              display     : 10,
-              border					: false,
-              text_color  			: '#888',
-              background_color    	: '#EEE',
-              text_hover_color  		: 'black',
-              background_hover_color	: '#CFCFCF'
-          });
-      });
+      $('#commentPaginator').bootstrapPaginator(options);
 
       function nullDialog (){
               bootbox.dialog({
@@ -246,5 +241,6 @@
           });
           return false;
       });
+  })(jQuery);
   </script>
 </html>
