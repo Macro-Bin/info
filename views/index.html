@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Message Board</title>
-      <link rel='stylesheet' href='/info/stylesheets/bootstrap.css' />
-      <script src="/info/javascripts/jquery-1.9.1.js"></script>
-      <script src="/info/javascripts/bootstrap.js"></script>
-      <script src="/info/javascripts/bootbox.min.js"></script>
-      <script src="/info/javascripts/bootstrap-paginator.min.js"></script>
-
+      <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
+      <link rel='stylesheet' href='/stylesheets/messageBoard.css'/>
+      <script src="/javascripts/jquery-1.9.1.js"></script>
+      <script src="/javascripts/bootstrap.js"></script>
+      <script src="/javascripts/bootbox.min.js"></script>
+      <script src="/javascripts/bootstrap-paginator.min.js"></script>
   </head>
   <body>
     <div class="row">
@@ -27,35 +27,17 @@
         </form>
     </div>
     <p>
-       <div class="row col-md-8 col-md-offset-1">
-            <ul class="list-group">
-                {%for item in items %}
-                <li class="list-group-item">
-                    <span class="reply pull-right">
-                        <button type="button" class="btn btn-info">reply</button>
-                    </span>
-                    <ul class="comment-group list-unstyled">
-                            <input type="hidden" value="{{item.comment.id}}"/>
-                            <li>{{item.comment.content}}</li>
-                            <li>{{item.comment.createTime|date("Y-n-d H:i") }}&nbsp<a href="#">@{{item.comment.username}}</a></li>
-                            <li>
-                                <ol class="reply-group">
-                                    {%for reply in item.replys %}
-                                            <li>
-                                                {{reply.content}}<br>
-                                                {{reply.createTime|date("Y-n-d H:i",480,"CCT") }}&nbsp<a href="#">@{{reply.username}}</a>
-                                            </li>
-                                    {% endfor %}
-                                </ol>
-                            </li>
-                     </ul>
-                </li>
-                {% endfor %}
-            </ul>
+    <div class="main row col-md-8 col-md-offset-1">
+          {% include "main.html" %}
+    </div>
+    {%if pageCount%}
+        <div class="row">
+            <div class="pageList col-md-8 col-md-offset-6 text-left">
+                <span class= "pageCount">共<span id="pageCountVal">{{commentCount}}</span>条</span>
+                <ul id="commentPaginator"></ul>
+            </div>
         </div>
-        <div class="row col-md-8 col-md-offset-6 text-left">
-            <ul id="commentPaginator"></ul>
-        </div>
+    {% endif %}
     </p>
   </body>
   <script type="text/javascript">
@@ -65,182 +47,29 @@
           bootstrapMajorVersion:3,
           currentPage: 1,
           numberOfPages: 10,
-          totalPages:2
+          totalPages:"{{pageCount}}",
+          itemTexts: function (type, page, current) {
+              switch (type) {
+                  case "first":
+                      return "首页";
+                  case "prev":
+                      return "上一页";
+                  case "next":
+                      return "下一页";
+                  case "last":
+                      return "最后一页";
+                  case "page":
+                      return page;
+              }
+            },
+          onPageClicked:function(event, originalEvent, type, page){
+              var currentTarget = $(event.currentTarget);
+              currentTarget.bootstrapPaginator("show",page);
+              $('div.row.col-md-8.col-md-offset-1').load('/paginator/'+page+'/read/');
+          }
       };
-
       $('#commentPaginator').bootstrapPaginator(options);
-
-      function nullDialog (){
-              bootbox.dialog({
-                  message: '写点东西吧，内容不能为空哦。',
-                  title: "提示",
-                  backdrop:false,
-                  buttons: {
-                      main: {
-                          label: "OK!",
-                          className: "btn-primary"
-                      }
-                  }
-              });
-              return false;
-      };
-      $( ".btn.btn-primary" ).click(function( ) {
-          if($("#comment").val()==""){
-              nullDialog();
-              return false;
-          }
-          $.ajax({
-              type: "POST",
-              url: '/info/comment/create',
-              data: {
-                  "name" :$("#name").val(),
-                  "comment":$("#comment").val()
-              }, // serializes the form's elements.
-              success: function(data)
-              {
-                  if(data["isSuccess"]){
-                      if($("ul.list-group li:eq(0)").length <=0){
-                          $("ul.list-group").append('<li class="list-group-item">' +
-                                  '<span class="reply pull-right">' +
-                                  '<button type="button" class="btn btn-info">reply</button>' +
-                                  '</span>' +
-                                  '<ul class="comment-group list-unstyled">' +
-                                  '<input type="hidden" value="'+data["cid"]+'"/>'+
-                                  '<li>'+data["content"] +'</li>' +
-                                  '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
-                                  '<li><ol class="reply-group"></ol></li>' +
-                                  '</ul>' +
-                                  '</li>'
-                          );
-                      }else{
-                          $("ul.list-group li:eq(0)").before(
-                                  '<li class="list-group-item">' +
-                                          '<span class="reply pull-right">' +
-                                          '<button type="button" class="btn btn-info">reply</button>' +
-                                          '</span>' +
-                                          '<ul class="comment-group list-unstyled">' +
-                                          '<input type="hidden" value="'+data["cid"]+'"/>'+
-                                          '<li>'+data["content"] +'</li>' +
-                                          '<li>'+data["createTime"]+'&nbsp'+'<a href="#">@'+data["username"]+'</a></li>' +
-                                          '<li><ol class="reply-group"></ol></li>' +
-                                          '</ul>' +
-                                          '</li>'
-                          );
-                      }
-
-                      $("#name").val("");
-                      $("#comment").val("");
-                      bootbox.dialog({
-                          message: '发表评论成功。',
-                          title: "提示",
-                          backdrop:false,
-                          buttons: {
-                              main: {
-                                  label: "OK!",
-                                  className: "btn-primary"
-                              }
-                          }
-                      });
-                  }else{
-                      bootbox.dialog({
-                          message: '发表评论失败，好像有什么东西混进来了。',
-                          title: "提示",
-                          backdrop:false,
-                          buttons: {
-                              main: {
-                                  label: "OK!",
-                                  className: "btn-primary"
-                              }
-                          }
-                      });
-                  }
-              }
-          });
-          return false;
-      });
-      $(".list-group").on("click", '.btn.btn-info', function(){
-          $current_ul = $(this).parent().parent("li").children("ul");
-          if($current_ul.children().has("form").length <= 0){
-              $current_ul.append(
-                      '<div class="row col-md-12 replyDiv">'+
-                      '<form class="form-inline" role="form">'+
-                      '<div class="form-group col-md-2">'+
-                      '<input type="text" class="form-control r_name" id="r_name" placeholder="请填写姓名或者邮箱...">'+
-                      '</div>'+
-                      '<div class="form-group col-md-9 ">'+
-                      '<input type="text" class="form-control r_comment" id="r_comment" placeholder="请输入回复内容...">'+
-                      '</div>'+
-                      '<button type="submit" class="btn btn-default">reply</button>'+
-                      '</form>'+
-                      '</div>'
-                      );
-          };
-          return false;
-      });
-
-
-      $(".list-group").on("click", '.btn.btn-default', function(){
-          $current_ul = $(this).closest("ul");
-          var cid = $current_ul.children("input[type='hidden']").val();
-          var reply =$current_ul.find(".r_comment").val();
-          var r_username =$current_ul.find(".r_name").val();
-          if(reply==""){
-              nullDialog();
-              return false;
-          }
-          $.ajax({
-              type: "POST",
-              url: '/info/reply/create',
-              data: {
-                  "name" : r_username,
-                  "comment" : reply ,
-                  "cid" : cid
-              },
-              success: function(data)
-              {
-                  if(data["isSuccess"]){
-                      if($current_ul.find(".reply-group li:last").length <=0){
-                          $current_ul.find(".reply-group").append('<li>' +
-                                  data["content"] +"<br>" +
-                                  data["createTime"] + "&nbsp" +
-                                  '<a href="#">@'+data["username"]+'</a></li>');
-                      }else{
-                          $current_ul.find(".reply-group li:last").after('<li>' +
-                                  data["content"] +"<br>" +
-                                  data["createTime"] + "&nbsp" +
-                                  '<a href="#">@'+data["username"]+'</a></li>');
-                      }
-                      $current_ul.find(".r_comment").val("");
-                      $current_ul.find(".r_name").val("");
-                      $current_ul.find(".replyDiv").remove();
-                      bootbox.dialog({
-                          message: '回复成功。',
-                          title: "提示",
-                          backdrop:false,
-                          buttons: {
-                              main: {
-                                  label: "OK!",
-                                  className: "btn-primary"
-                              }
-                          }
-                      });
-                  }else{
-                      bootbox.dialog({
-                          message: '回复失败，好像有什么东西混进来了。',
-                          title: "提示",
-                          backdrop:false,
-                          buttons: {
-                              main: {
-                                  label: "OK!",
-                                  className: "btn-primary"
-                              }
-                          }
-                      });
-                  }
-              }
-          });
-          return false;
-      });
-  })(jQuery);
+  });
   </script>
+  <script src="/javascripts/messageBoard.js"></script>
 </html>

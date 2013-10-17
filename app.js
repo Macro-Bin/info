@@ -7,8 +7,8 @@ var express = require('express');
 var routes = require('./routes');
 var comment = require('./routes/comment');
 var reply = require('./routes/reply');
+var paginator = require('./routes/paginator');
 var consolidate = require('consolidate');
-var swig = require('swig');
 
 var http = require('http');
 var path = require('path');
@@ -52,14 +52,17 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '/public')));
+
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
 app.get('/', routes.index);
-app.post('/info/comment/create', comment.create);
-app.post('/info/reply/create', reply.create);
+app.post('/comment/create', comment.create);
+app.post('/reply/create', reply.create);
+app.get('/paginator/:page/read/', paginator.findPage);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

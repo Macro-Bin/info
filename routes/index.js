@@ -3,10 +3,21 @@
  * GET home page.
  */
 var async = require('async');
+var moment = require('moment');
+function t(){
+    console.log('done');
+}
 exports.index = function(req, res){
     var Comment = req.models.comment;
     var items = [];
-    Comment.find().order('-createTime').all(function(error, comments){
+    var pageCount;
+    var pageSize = 10;
+    var commentCount;
+    Comment.count(function (err, count) {
+        commentCount = count;
+        pageCount = Math.ceil(count/pageSize);
+    });
+    Comment.find().order('-createTime').limit(pageSize).all(function(error, comments){
         async.each(comments, function(comment, callback) {
             comment.getReply(function(error, replys){
                 var item = {};
@@ -17,7 +28,7 @@ exports.index = function(req, res){
             });
         }, function(err) {
             if( err ) throw err;
-            res.render('index', {items: items});
+            res.render('index', {items : items, pageCount : pageCount, commentCount:commentCount});
         });
     });
 };
