@@ -12,7 +12,6 @@ exports.index = function(req, res){
                 var item = {};
                 item["comment"] = comment;
                 item["replys"] = replys;
-                console.log(comment.createTime);
                 items.push(item);
                 callback();
             });

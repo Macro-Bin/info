@@ -2,11 +2,11 @@
 <html>
   <head>
     <title>Message Board</title>
-      <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-      <script src="/javascripts/jquery-1.9.1.js"></script>
-      <script src="/javascripts/bootstrap.js"></script>
-      <script src="/javascripts/bootbox.min.js"></script>
-      <script src="/javascripts/bootstrap-paginator.min.js"></script>
+      <link rel='stylesheet' href='/info/stylesheets/bootstrap.css' />
+      <script src="/info/javascripts/jquery-1.9.1.js"></script>
+      <script src="/info/javascripts/bootstrap.js"></script>
+      <script src="/info/javascripts/bootbox.min.js"></script>
+      <script src="/info/javascripts/bootstrap-paginator.min.js"></script>
 
   </head>
   <body>
@@ -65,7 +65,7 @@
           bootstrapMajorVersion:3,
           currentPage: 1,
           numberOfPages: 10,
-          totalPages:110
+          totalPages:2
       };
 
       $('#commentPaginator').bootstrapPaginator(options);
@@ -91,7 +91,7 @@
           }
           $.ajax({
               type: "POST",
-              url: '/comment/create',
+              url: '/info/comment/create',
               data: {
                   "name" :$("#name").val(),
                   "comment":$("#comment").val()
@@ -190,7 +190,7 @@
           }
           $.ajax({
               type: "POST",
-              url: '/reply/create',
+              url: '/info/reply/create',
               data: {
                   "name" : r_username,
                   "comment" : reply ,

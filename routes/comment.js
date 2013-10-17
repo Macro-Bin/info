@@ -10,15 +10,9 @@ var os = require('os');
 var moment = require('moment');
 exports.create = function(req, res){
     var Comment = req.models.comment;
-    var name = req.body.name;
-    var comment = req.body.comment;
-    if(comment == ""){
-        res.json({isSuccess:false});
-    }
+    var name = req.body.name||"佚名";
+    var comment = req.body.comment||res.json({isSuccess:false});
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
-    if(name == ""){
-        name="佚名";
-    }
     Comment.create({
         content : comment,
         username : name,
