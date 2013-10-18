@@ -27,7 +27,7 @@ $(function () {
         }
         $.ajax({
             type: "POST",
-            url: '/comment/create',
+            url: '/info/comment/create',
             data: {
                 "name": $("#name").val(),
                 "comment": $("#comment").val()
@@ -128,7 +128,7 @@ $(function () {
         }
         $.ajax({
             type: "POST",
-            url: '/reply/create',
+            url: '/info/reply/create',
             data: {
                 "name": r_username,
                 "comment": reply,

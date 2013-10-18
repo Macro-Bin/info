@@ -2,12 +2,12 @@
 <html>
   <head>
     <title>Message Board</title>
-      <link rel='stylesheet' href='/stylesheets/bootstrap.css'/>
-      <link rel='stylesheet' href='/stylesheets/messageBoard.css'/>
-      <script src="/javascripts/jquery-1.9.1.js"></script>
-      <script src="/javascripts/bootstrap.js"></script>
-      <script src="/javascripts/bootbox.min.js"></script>
-      <script src="/javascripts/bootstrap-paginator.min.js"></script>
+      <link rel='stylesheet' href="/info/stylesheets/bootstrap.css"/>
+      <link rel='stylesheet' href="/info/stylesheets/messageBoard.css"/>
+      <script src="/info/javascripts/jquery-1.9.1.js"></script>
+      <script src="/info/javascripts/bootstrap.js"></script>
+      <script src="/info/javascripts/bootbox.min.js"></script>
+      <script src="/info/javascripts/bootstrap-paginator.min.js"></script>
   </head>
   <body>
     <div class="row">
@@ -65,11 +65,11 @@
           onPageClicked:function(event, originalEvent, type, page){
               var currentTarget = $(event.currentTarget);
               currentTarget.bootstrapPaginator("show",page);
-              $('div.row.col-md-8.col-md-offset-1').load('/paginator/'+page+'/read/');
+              $('div.row.col-md-8.col-md-offset-1').load('/info/paginator/'+page+'/read/');
           }
       };
       $('#commentPaginator').bootstrapPaginator(options);
   });
   </script>
-  <script src="/javascripts/messageBoard.js"></script>
+  <script src="/info/javascripts/messageBoard.js"></script>
 </html>

@@ -51,19 +51,19 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/info', express.static(path.join(__dirname, '/public')));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
+app.base="lonso";
 app.get('/', routes.index);
-app.post('/comment/create', comment.create);
-app.post('/reply/create', reply.create);
-app.get('/paginator/:page/read/', paginator.findPage);
+app.post('/info/comment/create', comment.create);
+app.post('/info/reply/create', reply.create);
+app.get('/info/paginator/:page/read/', paginator.findPage);
 
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('Express server listening on port ' + app.get('port'));
+    console.log('Express server listening on port ' + app.get('port'));
 });
