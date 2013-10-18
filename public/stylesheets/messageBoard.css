@@ -9,4 +9,85 @@ span.pageCount {
     top: -29px;
     position: relative;
 }
+body {
+    background-color: rgb(247, 243, 237);
+}
 
+div#mainDiv {
+    width: 1000px;
+    margin: 0 auto;
+    display:block;
+
+}
+div.paginator.row {
+    width: 1000px;
+}
+div.pageList.row {
+    left:50px;
+}
+
+
+div#mainDiv div.paginator {
+    height: 50px;
+    position: absolute;
+    left: 709px;
+}
+
+ul#commentPaginator{
+    width: 649px;
+}
+div.form-group.name {
+    right: 110px;
+}
+div.form-group.comment {
+    right: 130px;
+}
+div.form-group.comment input{
+    width: 95%;
+}
+
+div.inputComment {
+    height: 52px;
+}
+
+button.comment.btn-primary{
+    position: relative;
+    left: 801px;
+    top: -46px;
+}
+
+ol.reply-group li {
+   height: 46px;
+}
+
+div.row.replyDiv {
+    height: 38px;
+    top: 5px;
+    right: 17px;
+    width: 1011px;
+}
+
+input#r_name {
+    width: 139%;
+    right: 35px;
+}
+
+input#r_comment {
+    width: 96%;
+    position: relative;
+    left: 33px;
+}
+
+div.row.main {
+    width: 1000px;
+}
+.pagination li a {
+    /*position: relative;*/
+    float: right;
+    /*padding: 6px 12px;*/
+    /*margin-left: -1px;*/
+    /*line-height: 1.428571429;*/
+    /*text-decoration: none;*/
+    /*background-color: #ffffff;*/
+    /*border: 1px solid #dddddd;*/
+}

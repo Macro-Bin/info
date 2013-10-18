@@ -62,6 +62,7 @@ app.get('/', routes.index);
 app.post('/info/comment/create', comment.create);
 app.post('/info/reply/create', reply.create);
 app.get('/info/paginator/:page/read/', paginator.findPage);
+app.get('/info/paginator/update/', paginator.update);
 
 
 http.createServer(app).listen(app.get('port'), function(){

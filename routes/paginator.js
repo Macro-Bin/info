@@ -28,3 +28,15 @@ exports.findPage = function(req,res){
         });
     });
 };
+exports.update = function(req, res){
+    var Comment = req.models.comment;
+    var pageCount;
+    var pageSize = 10;
+    var commentCount;
+    Comment.count(function (err, count) {
+        commentCount = count;
+        pageCount = Math.ceil(count/pageSize);
+        console.log("commentCount---"+commentCount);
+        res.render('paginator', {pageCount : pageCount, commentCount:commentCount});
+    });
+};

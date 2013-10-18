@@ -1,0 +1,39 @@
+{% if commentCount %}
+<div class="pageList row">
+    <span class= "pageCount">共<span id="pageCountVal">{{commentCount}}</span>条</span>
+    <ul id="commentPaginator"></ul>
+</div>
+{% endif %}
+
+<script type="text/javascript">
+    $(function(){
+        var options = {
+            size:"small",
+            bootstrapMajorVersion:3,
+            currentPage: 1,
+            numberOfPages: 10,
+            totalPages:"{{pageCount}}",
+            alignment:"center",
+            itemTexts: function (type, page, current) {
+                switch (type) {
+                    case "first":
+                        return "首页";
+                    case "prev":
+                        return "上一页";
+                    case "next":
+                        return "下一页";
+                    case "last":
+                        return "最后一页";
+                    case "page":
+                        return page;
+                }
+            },
+            onPageClicked:function(event, originalEvent, type, page){
+                var currentTarget = $(event.currentTarget);
+                currentTarget.bootstrapPaginator("show",page);
+                $('div.main.row').load('/info/paginator/'+page+'/read/');
+            }
+        };
+        $('#commentPaginator').bootstrapPaginator(options);
+    });
+</script>

@@ -1,75 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Message Board</title>
-      <link rel='stylesheet' href="/info/stylesheets/bootstrap.css"/>
-      <link rel='stylesheet' href="/info/stylesheets/messageBoard.css"/>
-      <script src="/info/javascripts/jquery-1.9.1.js"></script>
-      <script src="/info/javascripts/bootstrap.js"></script>
-      <script src="/info/javascripts/bootbox.min.js"></script>
-      <script src="/info/javascripts/bootstrap-paginator.min.js"></script>
-  </head>
-  <body>
+<head>
+    <title>FIH</title>
+    <link rel="stylesheet" href="/info/stylesheets/bootstrap.css"/>
+    <link rel="stylesheet" href="/info/stylesheets/messageBoard.css"/>
+    <script src="/info/javascripts/jquery-1.9.1.js"></script>
+    <script src="/info/javascripts/bootstrap.js"></script>
+    <script src="/info/javascripts/bootbox.min.js"></script>
+    <script src="/info/javascripts/bootstrap-paginator.min.js"></script>
+</head>
+<body>
+<div id="mainDiv">
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
-           <h1> Message Board</h1>
+            <h1>讨论区</h1>
         </div>
     </div>
-    <div class="row col-md-12 col-md-offset-1">
+    <div class="row inputComment col-md-12 col-md-offset-1">
         <form id="commentForm" class="form-inline" role="form">
-            <div class="form-group col-md-2">
-                <input type="text" class="form-control" id="name" placeholder="请填写姓名或者邮箱...">
+            <div class="form-group name col-md-3">
+                <input type="text" class="form-control input-lg" id="name" placeholder="请填写姓名或者邮箱...">
             </div>
-            <div class="form-group col-md-6 ">
-                <input type="text" class="form-control" id="comment" placeholder="请输入评论内容...">
+            <div class="form-group comment col-md-9">
+                <input type="text" class="form-control input-lg" id="comment" placeholder="请输入评论内容...">
             </div>
-            <button type="submit" class="btn btn-primary">submit</button>
+            <button type="submit" class="btn btn-lg comment btn-primary">发表</button>
         </form>
     </div>
-    <p>
-    <div class="main row col-md-8 col-md-offset-1">
-          {% include "main.html" %}
+    <div class="main row col-md-12">
+        {% include "main.html" %}
     </div>
-    {%if pageCount%}
-        <div class="row">
-            <div class="pageList col-md-8 col-md-offset-6 text-left">
-                <span class= "pageCount">共<span id="pageCountVal">{{commentCount}}</span>条</span>
-                <ul id="commentPaginator"></ul>
-            </div>
-        </div>
-    {% endif %}
+    <div class="paginator row">
+        {% include "paginator.html"%}
+    </div>
     </p>
-  </body>
-  <script type="text/javascript">
-  $(function(){
-      var options = {
-          size:"small",
-          bootstrapMajorVersion:3,
-          currentPage: 1,
-          numberOfPages: 10,
-          totalPages:"{{pageCount}}",
-          itemTexts: function (type, page, current) {
-              switch (type) {
-                  case "first":
-                      return "首页";
-                  case "prev":
-                      return "上一页";
-                  case "next":
-                      return "下一页";
-                  case "last":
-                      return "最后一页";
-                  case "page":
-                      return page;
-              }
-            },
-          onPageClicked:function(event, originalEvent, type, page){
-              var currentTarget = $(event.currentTarget);
-              currentTarget.bootstrapPaginator("show",page);
-              $('div.row.col-md-8.col-md-offset-1').load('/info/paginator/'+page+'/read/');
-          }
-      };
-      $('#commentPaginator').bootstrapPaginator(options);
-  });
-  </script>
-  <script src="/info/javascripts/messageBoard.js"></script>
+</div>
+</body>
+<script src="/info/javascripts/messageBoard.js"></script>
 </html>

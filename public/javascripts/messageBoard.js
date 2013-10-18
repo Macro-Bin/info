@@ -37,7 +37,7 @@ $(function () {
                     if ($("ul.list-group li:eq(0)").length <= 0) {
                         $("ul.list-group").append('<li class="list-group-item">' +
                             '<span class="reply pull-right">' +
-                            '<button type="button" class="btn btn-info">reply</button>' +
+                            '<button type="button" class="btn btn-info">回复</button>' +
                             '</span>' +
                             '<ul class="comment-group list-unstyled">' +
                             '<input type="hidden" value="' + data["cid"] + '"/>' +
@@ -52,7 +52,7 @@ $(function () {
                         $("ul.list-group li:eq(0)").before(
                             '<li class="list-group-item">' +
                                 '<span class="reply pull-right">' +
-                                '<button type="button" class="btn btn-info">reply</button>' +
+                                '<button type="button" class="btn btn-info">回复</button>' +
                                 '</span>' +
                                 '<ul class="comment-group list-unstyled">' +
                                 '<input type="hidden" value="' + data["cid"] + '"/>' +
@@ -62,9 +62,9 @@ $(function () {
                                 '</ul>' +
                                 '</li>'
                         );
-                        $("#pageCountVal").text($("#pageCountVal").text()*1+1*1);
                     }
-
+//                        $("#pageCountVal").text($("#pageCountVal").text()*1+1*1);
+                    $('div.row.paginator').load('/info/paginator/update/');
                     $("#name").val("");
                     $("#comment").val("");
                     bootbox.dialog({
@@ -107,7 +107,7 @@ $(function () {
                     '<div class="form-group col-md-9 ">' +
                     '<input type="text" class="form-control r_comment" id="r_comment" placeholder="请输入回复内容...">' +
                     '</div>' +
-                    '<button type="submit" class="btn btn-default">reply</button>' +
+                    '<button type="submit" class="btn btn-default">回复</button>' +
                     '</form>' +
                     '</div>'
             );
@@ -115,7 +115,6 @@ $(function () {
         ;
         return false;
     });
-
 
     $("div.main").on("click", '.btn.btn-default', function () {
         $current_ul = $(this).closest("ul");
