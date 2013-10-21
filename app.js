@@ -4,10 +4,6 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
-var comment = require('./routes/comment');
-var reply = require('./routes/reply');
-var paginator = require('./routes/paginator');
 var consolidate = require('consolidate');
 
 var http = require('http');
@@ -51,18 +47,16 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(app.router);
-app.use('/info', express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-app.base="lonso";
-app.get('/', routes.index);
-app.post('/info/comment/create', comment.create);
-app.post('/info/reply/create', reply.create);
-app.get('/info/paginator/:page/read/', paginator.findPage);
-app.get('/info/paginator/update/', paginator.update);
+
+
+var routes = require('./routes/routes');
+routes(app);
 
 
 http.createServer(app).listen(app.get('port'), function(){
