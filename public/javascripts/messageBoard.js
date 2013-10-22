@@ -63,7 +63,6 @@ $(function () {
                                 '</li>'
                         );
                     }
-//                        $("#pageCountVal").text($("#pageCountVal").text()*1+1*1);
                     $('div.row.paginator').load('/info/paginator/update/');
                     $("#name").val("");
                     $("#comment").val("");

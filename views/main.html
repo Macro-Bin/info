@@ -7,7 +7,7 @@
         <ul class="comment-group list-unstyled">
             <input type="hidden" value="{{item.comment.id}}"/>
             <li>{{item.comment.content}}</li>
-            <li>{{item.comment.createTime|date("Y-n-d H:i") }}&nbsp<a href="#">@{{item.comment.username}}</a></li>
+            <li>{{item.comment.createTime|date("Y-n-d H:i","960","CST") }}&nbsp<a href="#">@{{item.comment.username}}</a></li>
             <li>
                 <ol class="reply-group">
                     {%for reply in item.replys %}
@@ -22,3 +22,4 @@
     </li>
     {% endfor %}
 </ul>
+

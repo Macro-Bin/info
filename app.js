@@ -20,7 +20,7 @@ var app = express();
 app.use(orm.express("mysql://root:@127.0.0.1/nodejs", {
     define: function (db, models, next) {
         db.settings.set("properties.primary_key", "id");
-        db.settings.set("properties.association_key", "rep_id");
+        db.settings.set("properties.association_key", "comm_id");
         models.comment = db.define("comment", {
             content : { type: "text" },
             createTime : { type: "date" },
