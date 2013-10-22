@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FIH</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css"/>
+    <link rel="stylesheet" href="/stylesheets/messageBoard.css"/>
+    <script src="/javascripts/jquery-1.9.1.js"></script>
+    <script src="/javascripts/bootstrap.js"></script>
+    <script src="/javascripts/bootbox.min.js"></script>
+    <script src="/javascripts/bootstrap-paginator.min.js"></script>
+</head>
+<body>
+<div id="mainDiv">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <h1>讨论区</h1>
+        </div>
+    </div>
+    <div class="row inputComment col-md-12 col-md-offset-1">
+        <form id="commentForm" class="form-inline" role="form">
+            <div class="form-group name col-md-3">
+                <input type="text" class="form-control input-lg" id="name" placeholder="请填写姓名或者邮箱...">
+            </div>
+            <div class="form-group comment col-md-9">
+                <input type="text" class="form-control input-lg" id="comment" placeholder="请输入评论内容...">
+            </div>
+            <button type="submit" class="btn btn-lg comment btn-primary">发表</button>
+        </form>
+    </div>
+    <div class="main row col-md-12">
+        {% include "main.html" %}
+    </div>
+    <div class="paginator row">
+        {% include "paginator.html"%}
+    </div>
+    </p>
+</div>
+</body>
+<script src="/javascripts/messageBoard.js"></script>
+</html>
