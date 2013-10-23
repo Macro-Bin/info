@@ -19,7 +19,34 @@
          <article>
              <section>
                  <div class="row introduce col-md-4 col-md-offset-1">
-                     博客内容
+                     也许命中注定我要来到你身旁
+                     画你的摸样听你的胸膛
+                     也许明天不会像今天一样辉煌
+                     谁又不受伤在痛苦中成长
+                     时间永远不会停留在这个寂寞的晚上
+                     夜深人静的时候写首歌给自己唱
+                     这样就不会感觉到没有你在我的身旁
+                     爱是一种信仰带给我力量
+                     我愿为你而歌唱
+                     也许思念不过只是对昨天的向往
+                     当一个人在远方它带来的更多的是希望
+                     也许我并不会将伤心写在脸上
+                     因为我的梦梦里有你的光亮
+                     时间永远不会停留在这个寂寞的晚上
+                     夜深人静的时候写首歌给自己唱
+                     这样就不会感觉到没有你在我的身旁
+                     爱是一种信仰带给我力量
+                     我愿为你而歌唱
+                     带走你的忧伤…
+                     不是不难过放弃曾想过
+                     这么努力为什么？
+                     今天看穿了唱着这支歌
+                     因为我爱你别无选择
+                     夜深人静的时候写首歌给自己唱
+                     这样就不会感觉到没有你在我的身旁
+                     爱是一种信仰带给我力量
+                     我愿为你而歌唱
+                     带走你的忧伤
                  </div>
              </section>
              <section>
@@ -36,12 +63,21 @@
 
              <section>
                  <div class="row weibo col-md-4 col-md-offset-1">
-                     <div class = "weiboContent1">sssssssssssssssssssss</div>
-                     <div class = "weiboContent2">sssssssssssssssssssss</div>
-                     <div class = "weiboContent3">sssssssssssssssssssss</div>
+                     {% for weibo in weiboJson.statuses %}
+                        <div class = "weiboContent{{loop.index}}">
+                            <ol>
+                                <li>
+                                    <canvas id="myCanvas" width="200" height="100">
+                                        Your browser does not support the canvas element.
+                                    </canvas>
 
-                 </div>
+                                </li>
+                                 <li>{{weibo.text}}</li>
+                            </ol>
 
+                        </div>
+                     {% endfor %}
+                   </div>
              </section>
 
          </article>

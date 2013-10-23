@@ -14,6 +14,14 @@ $(function(){
 
 
 
+    var c=document.getElementById("myCanvas");
+    var cxt=c.getContext("2d");
+    var img=new Image();
+    img.src="images/banner.jpg"
+    cxt.drawImage(img,0,0);
+
+
+
 });
 
 
