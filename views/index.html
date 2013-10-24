@@ -1,20 +1,22 @@
  {% include 'head.html'%}
 <body>
-     <nav class="navbar navbar-default" role="navigation">
-         <div class="navbar-header">
-             <ul class="nav navbar-nav">
-                 <li><a class="navbar-brand" href="#">自介</a></li>
-                 <li><a href="#">博客</a></li>
-                 <li><a href="#">旅行</a></li>
-                 <li><a href="#">生活</a></li>
-                 <li><a href="#">微薄</a></li>
-             </ul>
-         </div>
-     </nav>
-     <header class="header">
-         <h1>Welcome to my homepage</h1>
-         <p>My name is Lonso Liu</p>
-     </header>
+     <div class="header navigator">
+         <nav class="navbar" role="navigation">
+             <div class="navbar-header">
+                 <ul class="nav navbar-nav navigator">
+                     <li><a class="introduce" href="#">自介</a></li>
+                     <li><a href="#" calss="weibo">博客</a></li>
+                     <li><a href="#">旅行</a></li>
+                     <li><a href="#">生活</a></li>
+                     <li><a href="#">微薄</a></li>
+                 </ul>
+             </div>
+         </nav>
+         <header class="header">
+         </header>
+     </div>
+
+
      <div class="container">
          <article>
              <section>
@@ -52,7 +54,21 @@
              <section>
                  <div class="row travel col-md-4 col-md-offset-1">
                      <div id="map"></div>
-                     <div class="content"></div>
+                     <div class="content"> 夜深人静的时候写首歌给自己唱
+                         这样就不会感觉到没有你在我的身旁
+                         爱是一种信仰带给我力量
+                         我愿为你而歌唱
+                         带走你的忧伤…
+                         不是不难过放弃曾想过
+                         这么努力为什么？
+                         今天看穿了唱着这支歌
+                         因为我爱你别无选择
+                         夜深人静的时候写首歌给自己唱
+                         这样就不会感觉到没有你在我的身旁
+                         爱是一种信仰带给我力量
+                         我愿为你而歌唱
+                         带走你的忧伤
+                     </div>
                  </div>
              </section>
              <section>
@@ -65,16 +81,17 @@
                  <div class="row weibo col-md-4 col-md-offset-1">
                      {% for weibo in weiboJson.statuses %}
                         <div class = "weiboContent{{loop.index}}">
-                            <ol>
-                                <li>
-                                    <canvas id="myCanvas" width="200" height="100">
-                                        Your browser does not support the canvas element.
-                                    </canvas>
-
+                            <ul class="list-unstyled">
+                                <li class = "avatar">
+                                    <img width="100px" height="100px" src="{{weibo.user.avatar_large}}"/>
                                 </li>
-                                 <li>{{weibo.text}}</li>
-                            </ol>
-
+                                <li class = "screen_name">
+                                    {{weibo.user.screen_name}}
+                                </li>
+                                <li>
+                                    {{weibo.text}}
+                                </li>
+                            </ul>
                         </div>
                      {% endfor %}
                    </div>

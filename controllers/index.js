@@ -13,9 +13,8 @@ var count = 3;
 var friends_timeline = '/statuses/friends_timeline.json?uid='+uid+'&access_token='+access_token+'&source='+source+'&count='+count;
 var user_timeline = '/statuses/user_timeline.json?uid='+uid+'&access_token='+access_token+'&source='+source+'&count='+count;
 var wbChunk="";
-exports.home = function(req,res){
+var home =exports.home = function(req,res){
     https.get(baseUrl+user_timeline, function(apiResponse) {
-
         apiResponse.setEncoding('utf8');
         apiResponse.on('data',function(chunk){
             wbChunk += chunk;
@@ -28,11 +27,11 @@ exports.home = function(req,res){
             var wbJson=null;
             try{
                 wbJson = JSON.parse(wbChunk);
+                res.render('index',{weiboJson : wbJson});
             }catch(e){
-                wbJson = ""
+                throw e;
             }
 
-            res.render('index',{weiboJson : wbJson});
         });
     });
 

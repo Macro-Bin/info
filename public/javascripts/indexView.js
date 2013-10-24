@@ -10,15 +10,11 @@ $(function(){
         $("div.weibo div.weiboContent1").addClass("animated slideInLeft");
         $("div.weibo div.weiboContent2").addClass("animated slideInDown");
         $("div.weibo div.weiboContent3").addClass("animated slideInRight");
-    })
+    });
 
 
 
-    var c=document.getElementById("myCanvas");
-    var cxt=c.getContext("2d");
-    var img=new Image();
-    img.src="images/banner.jpg"
-    cxt.drawImage(img,0,0);
+
 
 
 

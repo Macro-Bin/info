@@ -25,9 +25,18 @@ $(function () {
     map.disableInertialDragging();
     map.disablePinchToZoom();
 
-    map.addEventListener("tilesloaded",function(){
+    map.addEventListener('tilesloaded',function(){
         $('div#map div.anchorBL').remove();
     });
+
+    //渐进效果
+    map.addEventListener('mouseover', function(){
+        $('div#map').fadeTo(500, 0.8);
+    });
+    map.addEventListener('mouseout', function(){
+        $('div#map').fadeTo(500,1);
+    });
+
     var markerIcon = new BMap.Icon("images/marker.ico", new BMap.Size(32, 32),{
         anchor: new BMap.Size(17, 30)
     });
@@ -35,13 +44,17 @@ $(function () {
     var liJiangMarker = new BMap.Marker(liJiang, {icon: markerIcon});
     map.addOverlay(shangHaiMarker);
     map.addOverlay(liJiangMarker);
-//    map.addEventListener("click", function(){
-//        alert("您点击了地图。");
-//    });
     var sContent =
         "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>天安门</h4>" +
             "<img style='float:left;margin:4px' id='imgDemo' src='http://app.baidu.com/map/images/tiananmen.jpg' width='139' height='104' title='天安门'/>" +
             "</div>";
-    var infoWindow = new BMap.InfoWindow(sContent);  // 创建信息窗口对象
-    map.openInfoWindow(infoWindow,shangHai); //开启信息窗口
+    var infoWindow = new BMap.InfoWindow(sContent,{enableMessage:false});  // 创建信息窗口对象
+    shangHaiMarker.addEventListener("mouseover", function(type, target, point,pixel){
+        map.openInfoWindow(infoWindow,shangHai); //开启信息窗口
+    });
+
+
+
+
+
 });
