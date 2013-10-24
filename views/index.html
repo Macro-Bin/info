@@ -81,15 +81,21 @@
                  <div class="row weibo col-md-4 col-md-offset-1">
                      {% for weibo in weiboJson.statuses %}
                         <div class = "weiboContent{{loop.index}}">
-                            <ul class="list-unstyled">
+                            <ul class="weiboUl list-unstyled">
                                 <li class = "avatar">
                                     <img width="100px" height="100px" src="{{weibo.user.avatar_large}}"/>
+                                </li>
+                                <li class = "description">
+                                    {{weibo.user.description}}
                                 </li>
                                 <li class = "screen_name">
                                     {{weibo.user.screen_name}}
                                 </li>
-                                <li>
+                                <li class = "text">
                                     {{weibo.text}}
+                                </li>
+                                <li>
+                                    {{weibo.retweeted_status.user.screen_name}}
                                 </li>
                             </ul>
                         </div>
