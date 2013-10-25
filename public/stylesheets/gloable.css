@@ -1,0 +1,131 @@
+@font-face
+{
+    font-family: blogFont;
+    src: url('../../font/SourceCodePro-Light.ttf'); /* IE9+ */
+}
+
+body {
+    font-family: blogFont;
+    background: #555;
+    overflow-x: hidden;
+    background-size:100% 100%;
+    background:#111 url("../../images/background.jpg") center top no-repeat fixed;
+}
+/*导航CSS*/
+.navbar {
+    position: relative;
+    z-index: 1000;
+    min-height: 35px;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+    opacity: 0.5;
+    width: 100px;
+    float: left;
+    height:460px;
+}
+
+.navbar-header {
+    float: left;
+    width: 0;
+}
+
+ul.navigator
+{
+    margin-bottom: 20px;
+    right:50px;
+}
+
+
+ul.navigator li
+{
+    transition-property: margin-left;
+    -moz-transition-property:  margin-left; /* Firefox 4 */
+    -webkit-transition-property: margin-left; /* Safari 和 Chrome */
+    -o-transition-property: margin-left; /* Opera */
+
+    transition-duration: 500ms;
+    -moz-transition-duration: 500ms; /* Firefox 4 */
+    -webkit-transition-duration: 500ms; /* Safari 和 Chrome */
+    -o-transition-duration: 500ms; /* Opera *
+
+
+    width: 60px;
+    /*border-top:2px solid #efefef;*/
+    display: block;
+    margin-left:0;
+    font-size: 120%;
+}
+ul.navigator li a.introduce{
+    width:66px;
+    font-size: 150%;
+}
+
+ul.navigator li:hover
+{
+    margin-left: 10px;
+}
+
+ul.navigator li a
+{
+    transition-property: color, background-color, padding-left, -webkit-box-shadow;
+    -moz-transition-property:  color, background-color, padding-left, -webkit-box-shadow; /* Firefox 4 */
+    -webkit-transition-property: color, background-color, padding-left, -webkit-box-shadow; /* Safari 和 Chrome */
+    -o-transition-property: color, background-color, padding-left, -webkit-box-shadow; /* Opera */
+
+    transition-duration: 500ms, 500ms, 500ms, 500ms;
+    -moz-transition-duration: 500ms, 500ms, 500ms, 500ms; /* Firefox 4 */
+    -webkit-transition-duration: 500ms, 500ms, 500ms, 500ms; /* Safari 和 Chrome */
+    -o-transition-duration: 500ms, 500ms, 500ms, 500ms; /* Opera *
+    /*background-color: #fff;*/
+    color: #afafaf;
+    padding-left: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    -webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
+    margin-top: 15px;
+
+}
+
+ul.navigator li a:link
+{
+
+}
+
+ul.navigator li a:link, ul.navigator li a
+{
+    display:block;
+
+
+}
+
+ul.navigator li a:hover
+{
+
+    background-color: #efefef;
+    color: #333;
+    padding-left: 15px;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    z-navigator: 2;
+
+}
+
+
+/*header CSS*/
+
+header.header {
+    background:url("../../images/banner.jpg");
+    border:2px solid;
+    background-repeat: no;
+    height:458px;
+    margin-bottom: 100px;
+}
+
+ /*footer CSS*/
+footer.footer {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    margin-top: 100px;
+    color: #777;
+    text-align: center;
+    border-top: 1px solid #e5e5e5;
+}

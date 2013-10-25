@@ -29,7 +29,8 @@ var home =exports.home = function(req,res){
                 wbJson = JSON.parse(wbChunk);
                 res.render('index',{weiboJson : wbJson});
             }catch(e){
-                throw e;
+                if(e)
+                    throw e;
             }
 
         });

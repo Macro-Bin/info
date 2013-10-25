@@ -1,43 +1,4 @@
 
-@font-face
-{
-    font-family: blogFont;
-    src: url('../../font/SourceCodePro-Light.ttf'); /* IE9+ */
-}
-
-body {
-    font-family: blogFont;
-    background: #555;
-    overflow-x: hidden;
-    background-size:100% 100%;
-    background:url("../../images/background.jpg");
-}
-
-.navbar {
-    position: relative;
-    z-index: 1000;
-    min-height: 35px;
-    margin-bottom: 0px;
-    border: 1px solid transparent;
-    opacity: 0.5;
-    width: 100px;
-    float: left;
-    height:460px;
-}
-
-.navbar-header {
-    float: left;
-    width: 0;
-}
-
-header.header {
-    background:url("../../images/banner.jpg");
-    border:2px solid;
-    background-repeat: no;
-    height:480px;
-    margin-bottom: 100px;
-}
-
 div.introduce {
     box-shadow: 10px 10px 5px #888888;
     width: 1000px;
@@ -46,6 +7,8 @@ div.introduce {
     border-radius:8px;
     margin-bottom: 100px;
 }
+
+/*traval CSS*/
 
 div.travel {
     box-shadow: 10px 10px 5px #888888;
@@ -70,12 +33,19 @@ div.travel div#map{
     float:left;
 }
 
+div.travel div.content h1{
+    -webkit-box-reflect: below -8px linear-gradient(transparent,transparent 40%,rgba(33,33,33,0.3));
+    margin-bottom: 16px;
+}
+
+
+/*weibo CSS*/
 
 div.weibo {
-    box-shadow: 10px 10px 5px #888888;
+    /*box-shadow: 10px 10px 5px #888888;*/
     width: 1000px;
     height: 450px;
-    background: #effcff;
+    /*background: #effcff;*/
     margin-bottom: 100px;
     border-radius:8px;
     /*overflow-x: hidden;*/
@@ -87,9 +57,68 @@ div.weibo div[class^="weiboContent"] {
     height: 400px;
     float: left;
     margin-right: 23px;
-    border: 4px solid #DFE1DE;
+    border: 1px solid #DFE1DE;
     margin-top: 25px;
-    background-color: #dadada;
+    background-color: #effcff;
+    border-radius:5px;
+}
+
+ul.weiboUl li{
+    float:left;
+}
+
+ul.weiboUl li.avatar img{
+    width: 80px;
+    height: 80px;
+    border-radius: 2px;
+
+}
+
+li.screen_name {
+    margin-top: 23px;
+    margin-left: 37px;
+    margin-bottom: 17px;
+}
+
+li.screen_name a:link{
+    width: 90px;
+    height: 20px;
+    text-decoration :none;
+}
+
+li.screen_name a:hover{
+    width: 90px;
+    height: 20px;
+    background-color: #f7f7f7;
+    text-decoration :none;
+}
+
+li.description {
+    margin-top: 8px;
+    margin-left: 18px;
+}
+
+li.text{
+    margin-top: 12px;
+    margin-left: 8px;
+    margin-bottom: 5px;
+}
+
+li.weibo_head span{
+    margin-right: 10px;
+}
+
+ul.weiboUl li.retweeted_source {
+    position: relative;
+    top: 88px;
+    float: right;
+    margin-right: 5px;
+}
+
+ul.weiboUl li.source {
+    position: absolute;
+    top: 374px;
+    left: 209px;
 }
 
 div.live {
@@ -101,86 +130,10 @@ div.live {
     border-radius:15px;
 }
 
-footer.footer {
-    padding-top: 40px;
-    padding-bottom: 30px;
-    margin-top: 100px;
-    color: #777;
-    text-align: center;
-    border-top: 1px solid #e5e5e5;
-}
-
-
-
-ul.navigator
-{
-    margin-bottom: 20px;
-    right:50px;
-}
-
-
-ul.navigator li
-{
-    -webkit-transition-property: margin-left;
-    -webkit-transition-duration: 500ms;
-    width: 60px;
-    /*border-top:2px solid #efefef;*/
-    display: block;
-    margin-left:0;
+div.map_info_window {
     font-size: 120%;
 }
-ul.navigator li a.introduce{
-    width:66px;
-    font-size: 150%;
-}
 
-ul.navigator li:hover
-{
-    margin-left: 10px;
-}
+div.map_info_window img.map_thumb{
 
-ul.navigator li a
-{
-    -webkit-transition-property: color, background-color, padding-left, -webkit-box-shadow;
-    -webkit-transition-duration: 500ms, 500ms, 500ms, 500ms;
-    /*background-color: #fff;*/
-    color: #afafaf;
-    padding-left: 0;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    -webkit-box-shadow: 0 0 0 rgba(0,0,0,0);
-    margin-top: 15px;
-
-}
-
-ul.navigator li a:link
-{
-
-}
-
-ul.navigator li a:link, ul.navigator li a
-{
-    display:block;
-
-
-}
-
-ul.navigator li a:hover
-{
-
-    background-color: #efefef;
-    color: #333;
-    padding-left: 15px;
-    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-    z-navigator: 2;
-
-}
-
-li.avatar {
-    /*float: left;*/
-}
-
-li.screen_name {
-    margin-top: 5px;
-    display: block;
 }

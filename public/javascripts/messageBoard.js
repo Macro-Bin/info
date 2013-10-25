@@ -27,7 +27,7 @@ $(function () {
         }
         $.ajax({
             type: "POST",
-            url: '/info/comment/create',
+            url: '/comment/create',
             data: {
                 "name": $("#name").val(),
                 "comment": $("#comment").val()
@@ -63,7 +63,7 @@ $(function () {
                                 '</li>'
                         );
                     }
-                    $('div.row.paginator').load('/info/paginator/update/');
+                    $('div.row.paginator').load('/paginator/update/');
                     $("#name").val("");
                     $("#comment").val("");
                     bootbox.dialog({
@@ -126,7 +126,7 @@ $(function () {
         }
         $.ajax({
             type: "POST",
-            url: '/info/reply/create',
+            url: '/reply/create',
             data: {
                 "name": r_username,
                 "comment": reply,

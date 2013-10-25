@@ -10,6 +10,8 @@ var reply = require('../controllers/reply');
 var paginator = require('../controllers/paginator');
 var blog = require('../controllers/blog');
 var index = require('../controllers/index');
+var travel = require('../controllers/travel');
+
 
 module.exports = function (app) {
     // home page
@@ -19,4 +21,5 @@ module.exports = function (app) {
     app.post('/reply/create', reply.create);
     app.get('/paginator/:page/read/', paginator.findPage);
     app.get('/paginator/update/', paginator.update);
+    app.get('/travel/shanghai/',travel.read)
 };

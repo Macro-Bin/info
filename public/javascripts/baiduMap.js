@@ -30,12 +30,12 @@ $(function () {
     });
 
     //渐进效果
-    map.addEventListener('mouseover', function(){
-        $('div#map').fadeTo(500, 0.8);
-    });
-    map.addEventListener('mouseout', function(){
-        $('div#map').fadeTo(500,1);
-    });
+//    map.addEventListener('mouseover', function(){
+//        $('div#map').fadeTo(500, 0.8);
+//    });
+//    map.addEventListener('mouseout', function(){
+//        $('div#map').fadeTo(500,1);
+//    });
 
     var markerIcon = new BMap.Icon("images/marker.ico", new BMap.Size(32, 32),{
         anchor: new BMap.Size(17, 30)
@@ -44,13 +44,19 @@ $(function () {
     var liJiangMarker = new BMap.Marker(liJiang, {icon: markerIcon});
     map.addOverlay(shangHaiMarker);
     map.addOverlay(liJiangMarker);
-    var sContent =
-        "<h4 style='margin:0 0 5px 0;padding:0.2em 0'>天安门</h4>" +
-            "<img style='float:left;margin:4px' id='imgDemo' src='http://app.baidu.com/map/images/tiananmen.jpg' width='139' height='104' title='天安门'/>" +
-            "</div>";
-    var infoWindow = new BMap.InfoWindow(sContent,{enableMessage:false});  // 创建信息窗口对象
+
+    var sContent ="<div class='map_info_window'>" +
+                    "<img style='float: left;' class='map_thumb' src='/images/shanghai/f1.gif' title='f1'/>" +
+                  "</div>";
+    var infoWindowOpt = {
+        title: "<a style='float: left;' href='/travel/shanghai/'>上海</a>",
+        enableMessage:false
+    };
+
+    var infoWindow = new BMap.InfoWindow(sContent, infoWindowOpt);  // 创建信息窗口对象
     shangHaiMarker.addEventListener("mouseover", function(type, target, point,pixel){
         map.openInfoWindow(infoWindow,shangHai); //开启信息窗口
+        $('div.BMap_pop').css("width","100px");
     });
 
 

@@ -8,6 +8,7 @@
 
 var os = require('os');
 var moment = require('moment');
+var async = require('async');
 exports.create = function(req, res){
     var Comment = req.models.comment;
     var name = req.body.name||"佚名";
@@ -19,6 +20,7 @@ exports.create = function(req, res){
         createTime : now
     },function(err,item){
         if(err){
+            console.log(err);
             res.json({isSuccess:false});
         }
         res.json({
@@ -33,7 +35,7 @@ exports.create = function(req, res){
 };
 
 
-var async = require('async');
+
 exports.read = function(req, res){
     var Comment = req.models.comment;
     var items = [];

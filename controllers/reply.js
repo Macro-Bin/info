@@ -18,6 +18,7 @@ exports.create = function(req, res){
         rep_id : cid
     },function(err,items){
         if(err){
+            console.log(err);
             res.json({isSuccess:false});
         }
         res.json({
