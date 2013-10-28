@@ -19,7 +19,9 @@ module.exports = function (app) {
     app.get('/comment/read', comment.read);
     app.post('/comment/create', comment.create);
     app.post('/reply/create', reply.create);
-    app.get('/paginator/:page/read/', paginator.findPage);
-    app.get('/paginator/update/', paginator.update);
-    app.get('/travel/shanghai/',travel.read)
+    app.get('/paginator/:page/read', paginator.findPage);
+    app.get('/paginator/update', paginator.update);
+    app.get('/travel/shanghai',travel.read);
+    app.get('/blog/create',blog.create);
+
 };

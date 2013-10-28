@@ -2,11 +2,10 @@
  <link rel="stylesheet" href="/stylesheets/index.css"/>
 <body>
  {% include 'navigator.html' %}
-
-
      <div class="container">
          <article>
              <section>
+                 <a name="introduce"></a>
                  <div class="row introduce col-md-4 col-md-offset-1">
                      也许命中注定我要来到你身旁
                      画你的摸样听你的胸膛
@@ -39,6 +38,7 @@
                  </div>
              </section>
              <section>
+                 <a name="travel"></a>
                  <div class="row travel col-md-4 col-md-offset-1">
                      <div id="map"></div>
                      <div class="content">
@@ -62,12 +62,14 @@
                  </div>
              </section>
              <section>
+                 <a name="live"></a>
                  <div class="row live col-md-4 col-md-offset-1">
                      生活
                  </div>
              </section>
 
              <section>
+                 <a name="weibo"></a>
                  <div class="row weibo col-md-4 col-md-offset-1">
                      {% for weibo in weiboJson.statuses %}
                         <div class = "weiboContent{{loop.index}}">
@@ -92,7 +94,7 @@
                                 <li>
                                     {{weibo.retweeted_status.text}}
                                 </li>
-                                <li class="retweeted_thumbnail_pic">
+                                <li class="thumbnail_pic">
                                     <a href="{{weibo.retweeted_status.original_pic}}">
                                         <img src="{{weibo.retweeted_status.thumbnail_pic}}"/>
                                     </a>
@@ -102,6 +104,11 @@
                                 </li>
 
                                 {% else %}
+                                    <li class="thumbnail_pic">
+                                        <a href="{{weibo.original_pic}}">
+                                            <img src="{{weibo.thumbnail_pic}}"/>
+                                        </a>
+                                    </li>
                                     <li class="source">
                                         来自{{weibo.source|raw}}
                                     </li>
@@ -112,11 +119,6 @@
                    </div>
              </section>
          </article>
-
-         <figure> <a id="testFac" class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/6.jpg">
-             <img src="/images/6.jpg"/> </a>
-             <figcaption>lonsoooooooooooooooooo</figcaption>
-         </figure>
      </div>
 </body>
  <script src="/javascripts/indexView.js"></script>

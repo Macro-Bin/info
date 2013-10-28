@@ -59,6 +59,12 @@ var routes = require('./routes/routes');
 routes(app);
 
 
+app.use(function(req, res) {
+    res.render('notFound', { status: 404, url: req.url });
+});
+
+
+
 http.createServer(app).listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
 });

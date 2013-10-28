@@ -21,10 +21,9 @@ $(function(){
     });
 
 
-    $('li.retweeted_thumbnail_pic a').fancybox({
+    $('li.thumbnail_pic a').fancybox({
 //        prevEffect : 'none',
 //        nextEffect : 'none',
-
         closeBtn  : true,
         arrows    : true,
         nextClick : true,
@@ -36,12 +35,6 @@ $(function(){
             }
         }
     });
-
-
-
-
-
-
 });
 
 

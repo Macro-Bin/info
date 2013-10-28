@@ -5,3 +5,6 @@
  * Time: 8:16 PM
  * To change this template use File | Settings | File Templates.
  */
+exports.create = function(req,res){
+     res.render("blog/create");
+ };

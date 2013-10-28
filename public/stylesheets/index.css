@@ -1,6 +1,6 @@
 
 div.introduce {
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 420px;
     background: #effcff;
@@ -11,7 +11,7 @@ div.introduce {
 /*traval CSS*/
 
 div.travel {
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 420px;
     background: #effcff;
@@ -115,14 +115,14 @@ ul.weiboUl li.retweeted_source {
     margin-right: 5px;
 }
 
-ul.weiboUl li.source {
-    position: absolute;
-    top: 374px;
-    left: 209px;
+div[class^="weiboContent"] ul.weiboUl li.source {
+    position: relative;
+    float: right;
+    top: 249px;
 }
 
 div.live {
-    box-shadow: 10px 10px 5px #888888;
+    box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 450px;
     background: #effcff;
@@ -134,6 +134,6 @@ div.map_info_window {
     font-size: 120%;
 }
 
-div.map_info_window img.map_thumb{
-
+.popover-content {
+    width: 130px;
 }

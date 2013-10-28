@@ -17,11 +17,11 @@ var home =exports.home = function(req,res){
     https.get(baseUrl+user_timeline, function(apiResponse) {
         apiResponse.setEncoding('utf8');
         apiResponse.on('data',function(chunk){
-            wbChunk += chunk;
+            wbChunk = chunk;
         });
         apiResponse.on('error', function(e) {
-            if(e) throw e;
             console.error("error info:"+e.message);
+            if(e) throw e;
         });
         apiResponse.on('end',function(){
             var wbJson=null;
@@ -29,10 +29,9 @@ var home =exports.home = function(req,res){
                 wbJson = JSON.parse(wbChunk);
                 res.render('index',{weiboJson : wbJson});
             }catch(e){
-                if(e)
-                    throw e;
+                console.log(e.message);
+                if(e) throw e;
             }
-
         });
     });
 

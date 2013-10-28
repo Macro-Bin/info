@@ -129,3 +129,22 @@ footer.footer {
     text-align: center;
     border-top: 1px solid #e5e5e5;
 }
+
+/*return to top CSS*/
+#toTop {
+    text-align: center;
+    padding: 5px;
+    position: fixed;
+    bottom: 79px;
+    right: 10px;
+    cursor: pointer;
+}
+
+#toTop img.toTop{
+    border-radius: 11px;
+    opacity: 0.6;
+}
+
+#toTop img:hover{
+    opacity: 1;
+}
