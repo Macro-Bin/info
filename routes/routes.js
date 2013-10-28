@@ -23,5 +23,11 @@ module.exports = function (app) {
     app.get('/paginator/update', paginator.update);
     app.get('/travel/shanghai',travel.read);
     app.get('/blog/create',blog.create);
+    app.post('/blog/save',blog.save);
+    app.get('/ieNotAgree',index.ieNotAgree);
+
+
+
+
 
 };

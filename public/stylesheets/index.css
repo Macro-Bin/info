@@ -3,7 +3,7 @@ div.introduce {
     box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 420px;
-    background: #effcff;
+    background: #ffffff;
     border-radius:8px;
     margin-bottom: 100px;
 }
@@ -14,7 +14,7 @@ div.travel {
     box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 420px;
-    background: #effcff;
+    background: #ffffff;
     margin-bottom: 100px;
     border-radius:8px;
 }
@@ -45,7 +45,7 @@ div.weibo {
     /*box-shadow: 10px 10px 5px #888888;*/
     width: 1000px;
     height: 450px;
-    /*background: #effcff;*/
+    /*background: #ffffff;*/
     margin-bottom: 100px;
     border-radius:8px;
     /*overflow-x: hidden;*/
@@ -59,7 +59,7 @@ div.weibo div[class^="weiboContent"] {
     margin-right: 23px;
     border: 1px solid #DFE1DE;
     margin-top: 25px;
-    background-color: #effcff;
+    background-color: #ffffff;
     border-radius:5px;
 }
 
@@ -125,7 +125,7 @@ div.live {
     box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 450px;
-    background: #effcff;
+    background: #ffffff;
     margin-bottom: 100px;
     border-radius:15px;
 }

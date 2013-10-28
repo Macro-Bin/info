@@ -27,6 +27,10 @@ app.use(orm.express("mysql://root:@127.0.0.1/nodejs", {
             createTime : { type: "date" },
             username : {type : "text"}
         });
+        models.document = db.define("document",{
+           content : {type : "binary"},
+           category : {type : "text"}
+        });
         models.reply.hasOne('comment', models.comment, {reverse: 'reply'} );
         db.sync(function (err) {
             if(err) throw err;
