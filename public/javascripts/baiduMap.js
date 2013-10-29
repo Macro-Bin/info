@@ -56,9 +56,10 @@ $(function () {
 //        anchor: new BMap.Size(17, 30)
 //    });
 
-    function ComplexCustomOverlay(point, mouseoverText){
+    function ComplexCustomOverlay(point, mouseoverText, flag){
         this._point = point;
         this._overText = mouseoverText;
+        this._flag = flag;
     }
     ComplexCustomOverlay.prototype = new BMap.Overlay();
     ComplexCustomOverlay.prototype.initialize = function(map){
@@ -77,13 +78,13 @@ $(function () {
             $(this).popover({content:content,placement:"right"});
             $(this).popover('show');
         };
-
+        var that = this;
         div.onmouseout = function(){
                $(this).popover('hide');
         };
 
         div.onclick = function(){
-            self.location='/travel/shanghai/';
+            self.location='/travel/'+that._flag;
         };
         map.getPanes().labelPane.appendChild(div);
         return div;
@@ -95,23 +96,23 @@ $(function () {
         this._div.style.top  = pixel.y - 30 + "px";
     };
 
-    var myCompOverlay = new ComplexCustomOverlay(shangHai, "上海 -2012-05");
-    var liJiangOverlay = new ComplexCustomOverlay(liJiang, "丽江 -2012-05");
-    var huaShangOverlay = new ComplexCustomOverlay(huaShang, "华山 -2012-05");
-    var xiAnOverlay = new ComplexCustomOverlay(xiAn, "华山 -2012-05");
-    var jiuZhaiGouOverlay = new ComplexCustomOverlay(jiuZhaiGou, "华山 -2012-05");
-    var qingChengShanOverlay = new ComplexCustomOverlay(qingChengShan, "华山 -2012-05");
-    var beiHaiOverlay = new ComplexCustomOverlay(beiHai, "华山 -2012-05");
-    var guiLinOverlay = new ComplexCustomOverlay(guiLin, "华山 -2012-05");
-    var yangShuoOverlay = new ComplexCustomOverlay(yangShuo, "华山 -2012-05");
-    var taErShiOverlay = new ComplexCustomOverlay(taErShi, "华山 -2012-05");
-    var chaKaYanHuOverlay = new ComplexCustomOverlay(chaKaYanHu, "华山 -2012-05");
-    var yueYaQuanOverlay = new ComplexCustomOverlay(yueYaQuan, "华山 -2012-05");
-    var moGaoKuOverlay = new ComplexCustomOverlay(moGaoKu, "华山 -2012-05");
-    var yaDanOverlay = new ComplexCustomOverlay(yaDan, "华山 -2012-05");
-    var qingHaiHuOverlay = new ComplexCustomOverlay(qingHaiHu, "华山 -2012-05");
+    var shangHaiOerlay = new ComplexCustomOverlay(shangHai, "上海 -2010-04",1);
+    var liJiangOverlay = new ComplexCustomOverlay(liJiang, "丽江 -2008-08",1);
+    var huaShangOverlay = new ComplexCustomOverlay(huaShang, "华山 -2009-08",1);
+    var xiAnOverlay = new ComplexCustomOverlay(xiAn, "西安 -2009-08",1);
+    var jiuZhaiGouOverlay = new ComplexCustomOverlay(jiuZhaiGou, "九寨沟 -2010-01",1);
+    var qingChengShanOverlay = new ComplexCustomOverlay(qingChengShan, "青城山 -2010-05",1);
+    var beiHaiOverlay = new ComplexCustomOverlay(beiHai, "北海 -2012-10",1);
+    var guiLinOverlay = new ComplexCustomOverlay(guiLin, "桂林 -2012-10",1);
+    var yangShuoOverlay = new ComplexCustomOverlay(yangShuo, "阳朔 -2012-10",1);
+    var taErShiOverlay = new ComplexCustomOverlay(taErShi, "塔尔寺 -2012-10",1);
+    var chaKaYanHuOverlay = new ComplexCustomOverlay(chaKaYanHu, "茶卡盐湖 -2012-10",1);
+    var yueYaQuanOverlay = new ComplexCustomOverlay(yueYaQuan, "月牙泉 -2012-10",1);
+    var moGaoKuOverlay = new ComplexCustomOverlay(moGaoKu, "莫高窟 -2012-10",1);
+    var yaDanOverlay = new ComplexCustomOverlay(yaDan, "雅丹 -2012-10",1);
+    var qingHaiHuOverlay = new ComplexCustomOverlay(qingHaiHu, "青海湖 -2012-10",1);
 
-    map.addOverlay(myCompOverlay);
+    map.addOverlay(shangHaiOerlay);
     map.addOverlay(liJiangOverlay);
     map.addOverlay(huaShangOverlay);
     map.addOverlay(xiAnOverlay);

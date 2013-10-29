@@ -21,7 +21,7 @@ module.exports = function (app) {
     app.post('/reply/create', reply.create);
     app.get('/paginator/:flag/read/:page', paginator.findPage);
     app.get('/paginator/:flag/update', paginator.update);
-    app.get('/travel/shanghai',travel.read);
+    app.get('/travel/:id',travel.read);
     app.get('/blog/create',blog.create);
     app.post('/blog/save',blog.save);
     app.get('/ieNotAgree',index.ieNotAgree);

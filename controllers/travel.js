@@ -7,9 +7,11 @@
  */
 
 var async = require('async');
-var document;
+
 exports.read = function(req, res){
     var Document = req.models.document;
+    var document_id = req.params.id || 1;
+    var document;
     Document.get(1, function(err, item){
         document = item;
     });
@@ -33,6 +35,7 @@ exports.read = function(req, res){
             });
         }, function(err) {
             if( err ) throw err;
+            console.log(document);
             res.render('travel/read', {items : items, pageCount : pageCount, commentCount:commentCount,document:document});
         });
     });

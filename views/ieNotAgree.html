@@ -15,11 +15,11 @@
 </header>
 
 <style type="text/css">
-    div.icon img{
-        width: 128px;
-        height: 128px;
-        margin-left: 331px;
-        margin-top: 50px;
+    div.icon figure{
+        position: relative;
+        color: #ffffff;
+        left: 278px;
+        margin-left: 180px;
     }
     a:link {
         text-decoration:none;
@@ -28,6 +28,10 @@
         text-align: center;
         color: #ffffff;
     }
+    li {
+        float: left;
+    }
+
 </style>
 <body>
     <div class="info">
@@ -35,27 +39,45 @@
        <h3>亲,你的浏览器已经有一种古老的味道了,请选择下面的浏览器更新下吧.</h3>
         <h3>体验下年轻的味道吧.</h3>
     </div>
-    <div class="icon">
-        <a href="http://www.google.com/intl/zh-CN/chrome/">
-            <img src="/images/Chrome_icon.png"/>
-        </a>
-        <a href="http://www.firefox.com.cn/">
-            <img src="/images/FireFox_icon.png"/>
-        </a>
-        <a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">
-            <img style="" src="/images/IE_icon.png"/>
-        </a>
+    <div class="icon row">
+        <ul class="list-unstyled">
+             <li>
+                 <figure>
+                     <a href="http://www.google.com/intl/zh-CN/chrome/">
+                         <img src="/images/Chrome_icon.png"/>
+                     </a>
+                     <figcaption>最新Chrome下载</figcaption>
+                 </figure>
+             </li>
+            <li>
+                <figure>
+                    <a href="http://www.firefox.com.cn/">
+                        <img src="/images/FireFox_icon.png"/>
+                    </a>
+                    <figcaption>最新FireFox下载</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure>
+                    <a href="http://windows.microsoft.com/zh-cn/internet-explorer/download-ie">
+                        <img style="" src="/images/IE_icon.png"/>
+                    </a>
+                    <figcaption>最新IE下载</figcaption>
+                </figure>
+            </li>
+        </ul>
+
     </div>
 </body>
 <script type="text/javascript">
-     $("div.icon img").hover(function(){
+     $("div.icon figure").hover(function(){
          $(this).addClass("animated pulse");
-         $("div.icon img").not(this).css("opacity", "0.5");
+         $("div.icon figure").not(this).css("opacity", "0.5");
      });
 
-     $("div.icon img").on("mouseout", function(){
-         $("div.icon img").removeClass("animated pulse");
-         $("div.icon img").css("opacity", "1");
+     $("div.icon figure").on("mouseout", function(){
+         $("div.icon figure").removeClass("animated pulse");
+         $("div.icon figure").css("opacity", "1");
      });
 </script>
 {% include 'footer.html'%}

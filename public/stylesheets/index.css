@@ -1,11 +1,21 @@
-
+/*introduce CSS*/
 div.introduce {
+    box-shadow: 2px 7px 5px #888;
+    width: 1000px;
+    background: white;
+    border-radius: 8px;
+    top: -61px;
+}
+
+/*blog CSS*/
+div.blog {
     box-shadow: 2px 7px 5px #888888;
     width: 1000px;
     height: 420px;
     background: #ffffff;
     border-radius:8px;
     margin-bottom: 100px;
+    overflow: hidden;
 }
 
 /*traval CSS*/
@@ -36,6 +46,10 @@ div.travel div#map{
 div.travel div.content h1{
     -webkit-box-reflect: below -8px linear-gradient(transparent,transparent 40%,rgba(33,33,33,0.3));
     margin-bottom: 16px;
+}
+
+div.travel div ul {
+    font-size: 18px;
 }
 
 
@@ -120,7 +134,7 @@ div[class^="weiboContent"] ul.weiboUl li.source {
     float: right;
     top: 249px;
 }
-
+ /*live CSS*/
 div.live {
     box-shadow: 2px 7px 5px #888888;
     width: 1000px;
@@ -128,6 +142,8 @@ div.live {
     background: #ffffff;
     margin-bottom: 100px;
     border-radius:15px;
+    overflow: hidden;
+    text-align: center;
 }
 
 div.map_info_window {
@@ -135,5 +151,9 @@ div.map_info_window {
 }
 
 .popover-content {
-    width: 130px;
+    width: 150px;
 }
+
+
+
+
