@@ -2,80 +2,63 @@
 <link rel="stylesheet" href="/stylesheets/travel.css"/>
 <body>
 {% include '../navigator.html' %}
-<article class="row">
-    <section>
-        也许命中注定我要来到你身旁
-        画你的摸样听你的胸膛
-        也许明天不会像今天一样辉煌
-        谁又不受伤在痛苦中成长
-        时间永远不会停留在这个寂寞的晚上
-        夜深人静的时候写首歌给自己唱
-        这样就不会感觉到没有你在我的身旁
-        爱是一种信仰带给我力量
-        我愿为你而歌唱
-        也许思念不过只是对昨天的向往
-        当一个人在远方它带来的更多的是希望
-        也许我并不会将伤心写在脸上
-        因为我的梦梦里有你的光亮
-        时间永远不会停留在这个寂寞的晚上
-        夜深人静的时候写首歌给自己唱
-        这样就不会感觉到没有你在我的身旁
-        爱是一种信仰带给我力量
-        我愿为你而歌唱
-        带走你的忧伤…
-        不是不难过放弃曾想过
-        这么努力为什么？
-        今天看穿了唱着这支歌
-        因为我爱你别无选择
-        夜深人静的时候写首歌给自己唱
-        这样就不会感觉到没有你在我的身旁
-        爱是一种信仰带给我力量
-        我愿为你而歌唱
-        带走你的忧伤
-    </section>
-</article>
-<div class="gallery row">
-    <ul class="polaroids large-block-grid-4 small-block-grid-2">
-        <li>
-            <figure>
-                <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/1.jpg">
-                    <img src="/images/1.jpg"/></a>
-                <figcaption>lonsoooooooooooooooooo</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure> <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/2.jpg">
-                <img src="/images/2.jpg"/></a>
-                <figcaption>lonsoooooooooooooooooo</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure><a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/3.jpg">
-                <img src="/images/3.jpg"/></a>
-                <figcaption>lonsoooooooooooooooooo</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure> <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/4.jpg">
-                <img src="/images/4.jpg"/></a>
-                <figcaption>lonsoooooooooooooooooo</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure><a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/5.jpg">
-                <img src="/images/5.jpg"/></a>
-                <figcaption>lonsoooooooooooooooooo</figcaption>
-            </figure>
-        </li>
-        <li>
-            <figure> <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/6.jpg">
-                <img src="/images/6.jpg"/> </a>
-                <figcaption>lonsoooooooooooooooooo</figcaption>
-            </figure>
-        </li>
-    </ul>
+<div class="title">
+<h1>标题</h1>
+<h3>日期2013-11-11 @lonso</h3>
 </div>
-{% include '../comment.html'%}
+<div class = "documentView">
+    <article class="row">
+        <section>
+            {{document.content | raw}}
+        </section>
+    </article>
+    <div class="gallery row">
+        <ul class="polaroids large-block-grid-4 small-block-grid-2">
+            <li>
+                <figure>
+                    <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/1.jpg">
+                        <img src="/images/1.jpg"/></a>
+                    <figcaption>lonsoooooooooooooooooo</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure> <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/2.jpg">
+                    <img src="/images/2.jpg"/></a>
+                    <figcaption>lonsoooooooooooooooooo</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure><a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/3.jpg">
+                    <img src="/images/3.jpg"/></a>
+                    <figcaption>lonsoooooooooooooooooo</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure> <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/4.jpg">
+                    <img src="/images/4.jpg"/></a>
+                    <figcaption>lonsoooooooooooooooooo</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure><a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/5.jpg">
+                    <img src="/images/5.jpg"/></a>
+                    <figcaption>lonsoooooooooooooooooo</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure> <a class = "fancybox-thumbs" data-fancybox-group="thumb" href="/images/6.jpg">
+                    <img src="/images/6.jpg"/> </a>
+                    <figcaption>lonsoooooooooooooooooo</figcaption>
+                </figure>
+            </li>
+
+        </ul>
+    </div>
+    <input id="flag" type="hidden" class="hidden" value="{{document.id}}"/>
+    <div class="documentComment">
+        {% include '../comment.html'%}
+    </div>
+</div>
 </body>
 <script src="/javascripts/travelView.js"></script>
 {% include '../footer.html'%}

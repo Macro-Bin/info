@@ -29,7 +29,7 @@
             onPageClicked:function(event, originalEvent, type, page){
                 var currentTarget = $(event.currentTarget);
                 currentTarget.bootstrapPaginator("show",page);
-                $('div.main.row').load('/paginator/'+page+'/read/');
+                $('div.main.row').load('/paginator/'+$("#flag").val()+'/read/'+page);
             }
         };
         $('#commentPaginator').bootstrapPaginator(options);

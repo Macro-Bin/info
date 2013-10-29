@@ -40,14 +40,10 @@ div.form-group.comment input{
     width: 95%;
 }
 
-div.inputComment {
-    height: 52px;
-}
-
 button.comment.btn-primary{
     position: relative;
-    left: 801px;
-    top: -46px;
+    left: 657px;
+    top: -83px;
 }
 
 ol.reply-group li {
@@ -67,14 +63,48 @@ input#r_name {
 }
 
 input#r_comment {
-    width: 96%;
+    width: 58%;
     position: relative;
     left: 33px;
 }
 
 div.row.main {
-    width: 1000px;
+    width: 745px;
 }
 .pagination li a {
     float: left;
+}
+
+form#commentForm {
+    color: #ffffff;
+    margin-bottom: -44px;
+}
+
+form#commentForm div.form-group {
+    position: relative;
+    left: 31px;
+}
+
+input#name {
+    position: relative;
+    width: 227px;
+    left: -127px;
+}
+
+textarea#comment {
+    position: relative;
+    right: 127px;
+    width: 582px;
+    resize: vertical;
+}
+
+form#commentForm div.form-group label.control-label {
+    text-align: right;
+    right: 122px;
+    font-size: 18px;
+}
+
+.btn.btn-default {
+    position: relative;
+    left: -253px;
 }

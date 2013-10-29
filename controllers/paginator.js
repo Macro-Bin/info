@@ -11,9 +11,10 @@ var app = express();
 exports.findPage = function(req,res){
     var Comment = req.models.comment;
     var currentPage = req.params.page;
+    var flag = req.params.flag;
     var pageSize = 10;
     var items = [];
-    Comment.find().order('-createTime').limit(pageSize).offset(pageSize*(currentPage-1)).all(function(error, comments){
+    Comment.find({document_id: flag }).order('-createTime').limit(pageSize).offset(pageSize*(currentPage-1)).all(function(error, comments){
         async.each(comments, function(comment, callback) {
             comment.getReply(function(error, replys){
                 var item = {};
@@ -30,13 +31,13 @@ exports.findPage = function(req,res){
 };
 exports.update = function(req, res){
     var Comment = req.models.comment;
+    var flag = req.params.flag;
     var pageCount;
     var pageSize = 10;
     var commentCount;
-    Comment.count(function (err, count) {
+    Comment.count({document_id : flag } ,function (err, count) {
         commentCount = count;
         pageCount = Math.ceil(count/pageSize);
-        console.log("commentCount---"+commentCount);
         res.render('paginator', {pageCount : pageCount, commentCount:commentCount});
     });
 };

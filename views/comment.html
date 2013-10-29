@@ -1,13 +1,20 @@
 <link rel="stylesheet" href="/stylesheets/messageBoard.css"/>
 <script src="/javascripts/bootstrap-paginator.min.js"></script>
 <div id="mainDiv">
-    <div class="row inputComment col-md-12 col-md-offset-1">
-        <form id="commentForm" class="form-inline" role="form">
-            <div class="form-group name col-md-3">
+    <div class="row inputComment">
+        <form id="commentForm" class="form-horizontal" role="form">
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">邮箱</label>
                 <input type="text" class="form-control input-lg" id="name" placeholder="请填写姓名或者邮箱...">
             </div>
-            <div class="form-group comment col-md-9">
-                <input type="text" class="form-control input-lg" id="comment" placeholder="请输入评论内容...">
+            <div class="form-group">
+                <label for="comment" class="col-sm-2 control-label">评论</label>
+                <!--<input type="text" class="form-control input-lg" id="comment" placeholder="请输入评论内容...">-->
+
+                   <textarea class="form-control input-lg" id="comment" placeholder="请输入评论内容...">
+
+                   </textarea>
+
             </div>
             <button type="submit" class="btn btn-lg comment btn-primary">发表</button>
         </form>

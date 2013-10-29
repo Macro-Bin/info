@@ -19,12 +19,14 @@ module.exports = function (app) {
     app.get('/comment/read', comment.read);
     app.post('/comment/create', comment.create);
     app.post('/reply/create', reply.create);
-    app.get('/paginator/:page/read', paginator.findPage);
-    app.get('/paginator/update', paginator.update);
+    app.get('/paginator/:flag/read/:page', paginator.findPage);
+    app.get('/paginator/:flag/update', paginator.update);
     app.get('/travel/shanghai',travel.read);
     app.get('/blog/create',blog.create);
     app.post('/blog/save',blog.save);
     app.get('/ieNotAgree',index.ieNotAgree);
+    app.get('/getToken', index.getToken)
+
 
 
 

@@ -15,12 +15,12 @@ exports.create = function(req, res){
         content : comment,
         username : name,
         createTime : now,
-        rep_id : cid
+        comment_id : cid
     },function(err,items){
         if(err){
             console.log(err);
             res.json({isSuccess:false});
-        }
+        };
         res.json({
             isSuccess:true,
             content : comment,

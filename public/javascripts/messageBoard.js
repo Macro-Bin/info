@@ -30,7 +30,8 @@ $(function () {
             url: '/comment/create',
             data: {
                 "name": $("#name").val(),
-                "comment": $("#comment").val()
+                "comment": $("#comment").val(),
+                "flag": $("#flag").val()
             }, // serializes the form's elements.
             success: function (data) {
                 if (data["isSuccess"]) {
@@ -63,7 +64,7 @@ $(function () {
                                 '</li>'
                         );
                     }
-                    $('div.row.paginator').load('/paginator/update/');
+                    $('div.row.paginator').load('/paginator/'+$("#flag").val()+'/update/');
                     $("#name").val("");
                     $("#comment").val("");
                     bootbox.dialog({

@@ -11,13 +11,15 @@ var moment = require('moment');
 var async = require('async');
 exports.create = function(req, res){
     var Comment = req.models.comment;
-    var name = req.body.name||"佚名";
-    var comment = req.body.comment||res.json({isSuccess:false});
+    var name = req.body.name || "佚名";
+    var comment = req.body.comment || res.json({isSuccess:false});
+    var document_id = req.body.flag || res.json({isSuccess:false});
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
     Comment.create({
         content : comment,
         username : name,
-        createTime : now
+        createTime : now ,
+        document_id : document_id
     },function(err,item){
         if(err){
             console.log(err);
@@ -33,8 +35,6 @@ exports.create = function(req, res){
     });
 
 };
-
-
 
 exports.read = function(req, res){
     var Comment = req.models.comment;

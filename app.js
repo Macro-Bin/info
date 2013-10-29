@@ -16,7 +16,7 @@ var app = express();
 app.use(orm.express("mysql://root:@127.0.0.1/nodejs", {
     define: function (db, models, next) {
         db.settings.set("properties.primary_key", "id");
-        db.settings.set("properties.association_key", "comm_id");
+//        db.settings.set("properties.association_key", "comm_id");
         models.comment = db.define("comment", {
             content : { type: "text" },
             createTime : { type: "date" },
@@ -31,7 +31,8 @@ app.use(orm.express("mysql://root:@127.0.0.1/nodejs", {
            content : {type : "binary"},
            category : {type : "text"}
         });
-        models.reply.hasOne('comment', models.comment, {reverse: 'reply'} );
+        models.reply.hasOne('comment', models.comment, {reverse: 'reply'});
+        models.comment.hasOne('document', models.document, {reverse: 'comment'});
         db.sync(function (err) {
             if(err) throw err;
             console.log("sync databases done!");
@@ -50,6 +51,8 @@ app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
+app.use(express.cookieParser('lonso blog session'));
+app.use(express.cookieSession());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, '/public')));
 

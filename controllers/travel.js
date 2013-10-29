@@ -6,6 +6,40 @@
  * To change this template use File | Settings | File Templates.
  */
 
+var async = require('async');
+var document;
 exports.read = function(req, res){
-    res.render('travel/read');
+    var Document = req.models.document;
+    Document.get(1, function(err, item){
+        document = item;
+    });
+    var Comment = req.models.comment;
+    var items = [];
+    var pageCount;
+    var pageSize = 10;
+    var commentCount;
+    Comment.count(function (err, count) {
+        commentCount = count;
+        pageCount = Math.ceil(count/pageSize);
+    });
+    Comment.find().order('-createTime').limit(pageSize).all(function(error, comments){
+        async.each(comments, function(comment, callback) {
+            comment.getReply(function(error, replys){
+                var item = {};
+                item["comment"] = comment;
+                item["replys"] = replys;
+                items.push(item);
+                callback();
+            });
+        }, function(err) {
+            if( err ) throw err;
+            res.render('travel/read', {items : items, pageCount : pageCount, commentCount:commentCount,document:document});
+        });
+    });
+
+
 };
+
+
+
+
