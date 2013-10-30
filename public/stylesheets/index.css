@@ -132,7 +132,8 @@ ul.weiboUl li.retweeted_source {
 div[class^="weiboContent"] ul.weiboUl li.source {
     position: relative;
     float: right;
-    top: 249px;
+    top: 230px;
+    margin-right: 5px;
 }
  /*live CSS*/
 div.live {

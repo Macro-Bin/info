@@ -22,7 +22,7 @@ module.exports = function (app) {
     app.get('/paginator/:flag/read/:page', paginator.findPage);
     app.get('/paginator/:flag/update', paginator.update);
     app.get('/travel/:id',travel.read);
-    app.get('/blog/create',blog.create);
+//    app.get('/blog/create',blog.create);
     app.post('/blog/save',blog.save);
     app.get('/ieNotAgree',index.ieNotAgree);
     app.get('/getToken', index.getToken)

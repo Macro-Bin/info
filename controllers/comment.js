@@ -12,8 +12,12 @@ var async = require('async');
 exports.create = function(req, res){
     var Comment = req.models.comment;
     var name = req.body.name || "佚名";
-    var comment = req.body.comment || res.json({isSuccess:false});
-    var document_id = req.body.flag || res.json({isSuccess:false});
+    var comment = req.body.comment;
+    var document_id = req.body.flag ;
+    if(comment==null || document_id == null ){
+        console.log("aa");
+        res.json({isSuccess:false})
+    }
     var now = moment().format("YYYY-MM-DD HH:mm:ss");
     Comment.create({
         content : comment,
@@ -22,7 +26,7 @@ exports.create = function(req, res){
         document_id : document_id
     },function(err,item){
         if(err){
-            console.log(err);
+            console.log(err.message);
             res.json({isSuccess:false});
         }
         res.json({

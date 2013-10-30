@@ -67,6 +67,7 @@ routes(app);
 
 
 app.use(function(req, res) {
+    console.log(req.url);
     res.render('notFound', { status: 404, url: req.url });
 });
 
