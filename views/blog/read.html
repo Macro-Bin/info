@@ -1,9 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
+{% include '../head.html'%}
+<link rel="stylesheet" href="/stylesheets/blog.css"/>
 <body>
-
+{% include '../navigator.html' %}
+<div class = "documentView">
+    <article class="row">
+        <section class = "blog" style="color: #ffffff;">
+            {{document.content | raw}}
+        </section>
+    </article>
+    <input id="flag" type="hidden" class="hidden" value="{{document.id}}"/>
+    <div class="documentComment">
+        {% include '../comment.html'%}
+    </div>
+</div>
 </body>
-</html>
+<script src="/javascripts/travelView.js"></script>
+{% include '../footer.html'%}

@@ -21,7 +21,7 @@ var document = "";
 var testCount = 0;
 exports.home = function(req,res){
     var Document = req.models.document;
-    Document.get(1, function(err, item){
+    Document.get(2, function(err, item){
         document = item;
     });
     https.get(baseUrl+user_timeline, function(apiResponse) {

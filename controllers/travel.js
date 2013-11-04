@@ -24,7 +24,7 @@ exports.read = function(req, res){
         commentCount = count;
         pageCount = Math.ceil(count/pageSize);
     });
-    Comment.find().order('-createTime').limit(pageSize).all(function(error, comments){
+    Comment.find({document_id:1}).order('-createTime').limit(pageSize).all(function(error, comments){
         async.each(comments, function(comment, callback) {
             comment.getReply(function(error, replys){
                 var item = {};
